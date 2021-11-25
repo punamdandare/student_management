@@ -19,7 +19,7 @@ public class StudentService {
 	private StudentRepository studentrepo;
 	
 	@Autowired
-	private AddressRepository entity;
+	private AddressRepository addressRepository;
 
 	public StudentEntity saveStd(StudentEntity std) {
 		StudentEntity save = studentrepo.save(std);
@@ -27,6 +27,23 @@ public class StudentService {
 	}
 
 	public StudentEntity updatestd(StudentEntity std) {
+//		StudentEntity entity = new StudentEntity();
+//		
+////		AddressEntity add=new AddressEntity();
+////		add.setId(std.getAddress().getId());
+//		
+////		entity.setAddress(add);
+//		entity.setExams(std.getExams());
+//		entity.setStudEmail(std.getStudEmail());
+//		entity.setStudId(std.getStudId());
+//		entity.setStudName(std.getStudName());
+//		entity.setStudMobile(std.getStudMobile());
+//		entity.setStudPass(std.getStudPass());
+		
+		
+		AddressEntity addressEntity = addressRepository.findById(std.getAddress().getId()).orElseThrow(RuntimeException::new);
+		std.setAddress(addressEntity);
+		
 		StudentEntity save = studentrepo.save(std);
 		return save;
 	}

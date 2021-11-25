@@ -12,37 +12,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student.management.entity.AddressEntity;
+import com.student.management.entity.StudentEntity;
+import com.student.management.repository.StudentRepository;
 import com.student.management.service.AddressService;
 
 @RestController
 @RequestMapping("/address")
 public class AddressController {
-@Autowired
-public AddressService addressService;
+	@Autowired
+	public AddressService addressService; 
 
-@PostMapping("/")
-public AddressEntity saveaddress(@RequestBody AddressEntity sadd) {
-	AddressEntity saveadd = addressService.saveadd(sadd);
-	return saveadd;
-}
 
-@PutMapping("/")
-public AddressEntity updateadd(@RequestBody AddressEntity uadd) {
-	AddressEntity updateadd = addressService.updateadd(uadd);
-	return updateadd;
+	@PostMapping("/")
+	public AddressEntity saveaddress(@RequestBody StudentEntity student) {
 	
-}
+		AddressEntity saveadd = addressService.saveadd(student.getAddress());
+		
+		return saveadd;
+	}
 
-@GetMapping("/")
-public List<AddressEntity> findByall(){
-	List<AddressEntity> list = addressService.findbyAll();
-	return list;
-}
+	@PutMapping("/")
+	public AddressEntity updateadd(@RequestBody AddressEntity uadd) {
+		AddressEntity updateadd = addressService.updateadd(uadd);
+		return updateadd;
 
-@GetMapping("/{ID}")
-public AddressEntity findByid(@PathVariable (value = "ID") Long id) {
-	AddressEntity addressEntity = addressService.findbyId(id);
-	return addressEntity;
-}
+	}
+
+	@GetMapping("/")
+	public List<AddressEntity> findByall() {
+		List<AddressEntity> list = addressService.findbyAll();
+		return list;
+	}
+
+	@GetMapping("/{ID}")
+	public AddressEntity findByid(@PathVariable(value = "ID") Long id) {
+		AddressEntity addressEntity = addressService.findbyId(id);
+		return addressEntity;
+	}
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student.management.entity.ExaminationEntity;
+import com.student.management.entity.StudentEntity;
 import com.student.management.repository.ExaminationRepository;
 import com.student.management.service.ExaminationService;
 
@@ -27,8 +28,8 @@ public class ExaminationController {
 	private ExaminationRepository examrepo;
 	
 	@PostMapping("/")
-	public ExaminationEntity saveexam(@RequestBody ExaminationEntity save) {
-		ExaminationEntity saveexam = examinationService.saveexam(save);
+	public List<ExaminationEntity> saveexam(@RequestBody StudentEntity save) {
+		List<ExaminationEntity> saveexam = examinationService.saveexam(save.getExams());
 		return saveexam;
 	}
 	

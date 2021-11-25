@@ -14,10 +14,10 @@ import lombok.Setter;
 
 public class ExaminationEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-private Long examId;
-private String examType;
-private String examRollNo;
-private String  examDate;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long examId;
+	private String examType;
+	private String examRollNo;
+	private String examDate;
 
 }

@@ -14,8 +14,8 @@ public class ExaminationService {
 	@Autowired
 	private ExaminationRepository examinationRepository;
 	
-	public ExaminationEntity saveexam(ExaminationEntity save) {
-		ExaminationEntity entity = examinationRepository.save(save);
+	public List<ExaminationEntity> saveexam(List<ExaminationEntity> save) {
+		List<ExaminationEntity> entity = examinationRepository.saveAll(save);
 		return entity;
 	}
 	
